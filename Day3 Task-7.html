@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>INFOMAX COMPUTER ACADEMY</title>
+    <style>
+      body {
+        background-color: yellow;
+        font-family: Arial, sans-serif;
+        color: black;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        color: darkred;
+        text-align: center;
+        font-size: 36px;
+        margin: 10px 0 0 0;
+      }
+
+      h2 {
+        color: darkred;
+        text-align: center;
+        font-size: 30px;
+        margin: 0;
+      }
+
+      hr {
+        border: 1px solid red;
+        margin: 10px 0;
+      }
+
+      .nav {
+        text-align: left;
+        margin-bottom: 10px;
+      }
+
+      .nav a {
+        color: blue;
+        text-decoration: underline;
+        margin-right: 15px;
+      }
+
+      .content {
+        max-width: 900px;
+        min-width: 600px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start; /* Change from space-between to flex-start */
+        gap: 30px;
+      }
+
+      .right-image {
+        width: 250px;
+        min-width: 200px;
+        max-width: 250px;
+        margin-left: 30px; /* Space between text and image */
+        margin-right: 0;
+        float: none;
+        align-self: flex-start; /* Align image to top */
+      }
+
+      .text-section {
+        flex: 1;
+      }
+
+      .footer {
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>INFOMAX</h1>
+    <h2>COMPUTER ACADEMY</h2>
+    <hr />
+
+    <div class="nav">
+      <a href="#">HOME</a> | <a href="#">ABOUT US</a> |
+      <a href="#">COURSES</a> | <a href="#">NIELIT</a> |
+    </div>
+
+    <hr />
+
+    <div class="content">
+      <div class="text-section">
+        <h3><b>Who We Are?</b></h3>
+        <p>
+          Infomax is Computer Academy which provides high quality computer
+          education at a very high standard at a low cost.
+        </p>
+        <p>
+          ICA's mission is to create a pool of high quality software
+          professionals who will meet the demanding needs of multinational
+          organizations for tomorrow's challenges.
+        </p>
+
+        <h3><b>What We Offer?</b></h3>
+        <p>
+          We are committed to provide technology-based education to all sections
+          of the society, for the overall development of the country through
+          continual improvements of quality management system to achieve our
+          objectives of promoting younger generation towards prosperity.
+        </p>
+      </div>
+      <img
+        src="https://i.pinimg.com/736x/43/9e/2b/439e2b3ef4ee8547b20a8a2ed0a0d152.jpg"
+        alt="Student"
+        class="right-image"
+      />
+    </div>
+
+    <div class="footer">
+      <p>
+        <b>Dear Student</b> O Level Registration Start now for Registration
+        <a href="#">Click Here</a>
+      </p>
+    </div>
+  </body>
+</html>
