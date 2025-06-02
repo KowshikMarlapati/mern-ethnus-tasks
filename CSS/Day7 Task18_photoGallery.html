@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Photo Gallery</title>
+    <style>
+      body {
+        background-color: #eee;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .gallery-title {
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 0 0 20px 20px;
+        border: 2px solid orange;
+        width: 60%;
+        margin: 30px auto 20px auto;
+      }
+
+      .gallery-container {
+        width: 80%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border: 4px solid black;
+        border-radius: 10px;
+      }
+
+      .photo {
+        border: 2px solid #ccc;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+        opacity: 0.5;
+      }
+
+      .photo img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gallery-title">Photo Gallery</div>
+
+    <div class="gallery-container">
+      <div class="photo">
+        <img
+          src="https://media.istockphoto.com/id/1394440950/photo/natural-view-cosmos-filed-and-sunset-on-garden-background.webp?b=1&s=612x612&w=0&k=20&c=o3n-h2j4aBnaDqKeY-876cTRm1DLOsZcCjcfDZf_9TQ="
+          alt="Photo 1"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://img.freepik.com/free-photo/modern-office-space-interior_158595-5206.jpg?semt=ais_hybrid&w=740"
+          alt="Photo 2"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://i.pinimg.com/736x/8a/dd/79/8add794f8ae883cd4aa3cd86b54f2859.jpg"
+          alt="Photo 3"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://images.unsplash.com/photo-1618477202872-89cec6f8d62e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwaW1hZ2V8ZW58MHx8MHx8fDA%3D"
+          alt="Photo 4"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://img.freepik.com/free-photo/white-cloud-blue-sky-sea_74190-4488.jpg?semt=ais_hybrid&w=740"
+          alt="Photo 5"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAOJbyQKCRmCU-m5lfss7XjU_24lrYNvT0Tg&s"
+          alt="Photo 6"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRORvfDU2L21xoBzZVRN95b9CwxS1_md1bYWg&st"
+          alt="Photo 7"
+        />
+      </div>
+      <div class="photo">
+        <img
+          src="https://t4.ftcdn.net/jpg/03/08/69/75/360_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg"
+          alt="Photo 8"
+        />
+      </div>
+    </div>
+  </body>
+</html>

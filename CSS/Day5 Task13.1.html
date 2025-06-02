@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 20px;
+      }
+      ul.custom-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      ul.custom-list li::before {
+        content: "★";
+        color: red;
+        margin-right: 8px;
+      }
+
+      ul.custom-list li {
+        font-weight: bold;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="custom-list">
+      <li>Hummus</li>
+      <li>Pita</li>
+      <li>Green salad</li>
+      <li>Halloumi</li>
+    </ul>
+  </body>
+</html>
