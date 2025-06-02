@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login1</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40vw;
+        background: url("img1.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .wrapper {
+        height: 380px;
+        width: 400px;
+        background-color: rgb(41, 41, 41, 0.8);
+      }
+      .wrapper h3 {
+        text-transform: uppercase;
+        text-align: center;
+        color: white;
+        padding-top: 40px;
+        font-size: 30px;
+      }
+      .input-box {
+        padding-bottom: 20px;
+        padding-left: 70px;
+      }
+      .input-box input {
+        width: 255px;
+        height: 35px;
+        padding-left: 5px;
+      }
+      .agree {
+        padding-left: 66px;
+        color: white;
+      }
+      .agree a {
+        color: white;
+      }
+      button {
+        margin-left: 67px;
+        width: 270px;
+        height: 44px;
+        background-color: orange;
+        color: white;
+        margin-top: 20px;
+        border: solid orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h3>login window</h3>
+      <form>
+        <div class="input-box">
+          <input type="email" placeholder="Your email address" />
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Your password" />
+        </div>
+        <div class="agree">
+          <label
+            ><input type="checkbox" />Agree with
+            <a href="">Terms&Condition</a></label
+          >
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>

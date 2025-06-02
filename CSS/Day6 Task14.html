@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      body {
+        background-image: url("img1.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .wrapper {
+        position: relative;
+        border: 2px solid rgb(0, 0, 0, 0.2);
+        background-color: rgba(17, 17, 17, 0.8);
+        height: 400px;
+        width: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 35%;
+        top: 150px;
+      }
+      .form-box h3 {
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        margin-left: -130px;
+      }
+      .text-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+
+        color: white;
+      }
+      .wrapper .form-box {
+        width: 100%;
+        padding: 30px;
+      }
+      .text-box {
+        position: relative;
+        width: 300px;
+        height: 40px;
+        border-bottom: 2px solid white;
+        margin: 10px 0;
+        left: -25%;
+      }
+      ::placeholder {
+        color: rgb(232, 230, 230);
+      }
+      .check-box {
+        position: relative;
+        top: 10px;
+        color: white;
+        left: -25%;
+      }
+      .check-box a {
+        color: white;
+      }
+      button {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        background-color: rgb(4, 157, 4);
+        border: inset;
+        border-radius: 5px;
+        top: 30px;
+        cursor: pointer;
+        left: -25%;
+      }
+      .circular-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        position: relative;
+        margin-top: -400px;
+        left: 47%;
+        padding: 0px;
+        border: rgb(203, 30, 30);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt-K-a9AcEr_2mOKHBHd92eWmuaqcVZbcx_g&s"
+        class="circular-image"
+        alt="Avatar"
+      />
+      <div class="form-box">
+        <h3>login window</h3>
+        <form>
+          <div class="text-box">
+            <input type="email" placeholder="Your Email Address" />
+          </div>
+          <div class="text-box">
+            <input type="password" placeholder="Your Password" />
+          </div>
+          <div class="check-box">
+            <label
+              ><input type="checkbox" />Agree With
+              <a href="">Terms&Condition</a></label
+            >
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
