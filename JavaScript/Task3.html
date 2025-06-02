@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Repeat Text</title>
+  </head>
+  <body>
+    <h1><ol id="output"></ol></h1>
+
+    <script>
+      // Prompt for the number of repetitions
+      let count = parseInt(
+        prompt("How many times do you want the text to repeat?")
+      );
+
+      // Validate the count
+      if (isNaN(count) || count <= 0) {
+        document.body.innerHTML = "<h1>Invalid number of repetitions!</h1>";
+      } else {
+        // Prompt for the text to repeat
+        let text = prompt("Enter the text to repeat:");
+
+        // Reference to the <ol> element
+        let outputList = document.getElementById("output");
+
+        // Add list items
+        for (let i = 1; i <= count; i++) {
+          let listItem = document.createElement("li");
+          listItem.textContent = text;
+          outputList.appendChild(listItem);
+        }
+      }
+    </script>
+  </body>
+</html>

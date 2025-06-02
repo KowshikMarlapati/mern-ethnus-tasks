@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Number Check</title>
+  </head>
+  <body>
+    <h1 id="result"></h1>
+
+    <script>
+      // Prompt user for input
+      let input = prompt("Enter a number:");
+
+      // Convert input to a number
+      let number = parseFloat(input);
+
+      // Get the <h1> element
+      let resultElement = document.getElementById("result");
+
+      // Check if input is a valid number
+      if (isNaN(number)) {
+        resultElement.textContent = "That's not a valid number!";
+      } else if (number > 0) {
+        resultElement.textContent = "The number is positive.";
+      } else if (number < 0) {
+        resultElement.textContent = "The number is negative.";
+      } else {
+        resultElement.textContent = "The number is zero.";
+      }
+    </script>
+  </body>
+</html>

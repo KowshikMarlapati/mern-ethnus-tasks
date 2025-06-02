@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Grade Calculator</title>
+  </head>
+  <body>
+    <h1 id="result"></h1>
+
+    <script>
+      // Prompt user for marks
+      let input = prompt("Enter your marks (0 - 100):");
+      let marks = parseInt(input);
+
+      // Reference to the <h1> tag
+      let result = document.getElementById("result");
+
+      // Check if input is a valid number and in range
+      if (isNaN(marks) || marks < 0 || marks > 100) {
+        result.textContent =
+          "Invalid input! Please enter marks between 0 and 100.";
+      } else {
+        // Determine the grade
+        let grade = "";
+        if (marks >= 91) {
+          grade = "Grade A";
+        } else if (marks >= 81) {
+          grade = "Grade B";
+        } else if (marks >= 71) {
+          grade = "Grade C";
+        } else if (marks >= 61) {
+          grade = "Grade D";
+        } else if (marks >= 51) {
+          grade = "Grade E";
+        } else {
+          grade = "Grade F (Fail)";
+        }
+
+        // Display the result
+        result.textContent = "You got " + grade + ".";
+      }
+    </script>
+  </body>
+</html>
