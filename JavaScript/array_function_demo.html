@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Array Built-in Functions</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: #f9f9f9;
+        padding: 20px;
+      }
+      h2 {
+        color: #222;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript Array Built-in Functions</h2>
+    <pre id="output"></pre>
+
+    <script>
+      const output = document.getElementById("output");
+      const log = (label, result) =>
+        (output.textContent += `${label}:\n${JSON.stringify(result)}\n\n`);
+
+      let arr = [5, 2, 9, 1];
+
+      log("Original Array", arr);
+
+      arr.push(7);
+      log("push(7)", arr);
+
+      arr.pop();
+      log("pop()", arr);
+
+      arr.shift();
+      log("shift()", arr);
+
+      arr.unshift(10);
+      log("unshift(10)", arr);
+
+      log("reverse()", [...arr].reverse()); // Using spread to not mutate original
+
+      log(
+        "sort()",
+        [...arr].sort((a, b) => a - b)
+      );
+
+      let spliced = [...arr];
+      spliced.splice(1, 2, 99, 100);
+      log("splice(1, 2, 99, 100)", spliced);
+
+      let sliced = arr.slice(1, 3);
+      log("slice(1, 3)", sliced);
+
+      let arr2 = [8, 4];
+      let combined = arr.concat(arr2);
+      log("concat([8, 4])", combined);
+
+      log("join('-')", arr.join("-"));
+
+      log("includes(9)", arr.includes(9));
+
+      log("indexOf(2)", arr.indexOf(2));
+
+      const mapped = arr.map((x) => x * 2);
+      log("map(x => x * 2)", mapped);
+
+      const filtered = arr.filter((x) => x > 3);
+      log("filter(x > 3)", filtered);
+
+      const reduced = arr.reduce((sum, val) => sum + val, 0);
+      log("reduce((sum, val) => sum + val, 0)", reduced);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Function Types</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+      h2 {
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript Function Types Demo</h2>
+    <pre id="output"></pre>
+
+    <script>
+      const output = document.getElementById("output");
+
+      // 1. Named Function
+      function greet(name) {
+        return `Hello, ${name}!`;
+      }
+
+      // 2. Anonymous Function (assigned to variable)
+      const sayBye = function (name) {
+        return `Goodbye, ${name}!`;
+      };
+
+      // 3. Arrow Function
+      const square = (num) => num * num;
+
+      // 4. Callback Function
+      function doMath(a, b, callback) {
+        return callback(a, b);
+      }
+
+      // 5. Higher-Order Function (returns a function)
+      function multiplier(factor) {
+        return function (num) {
+          return num * factor;
+        };
+      }
+
+      // 6. IIFE - Immediately Invoked Function Expression
+      const iifeResult = (function () {
+        return "IIFE executed!";
+      })();
+
+      // Displaying outputs
+      output.textContent += "1. Named Function:\n";
+      output.textContent += greet("Alice") + "\n\n";
+
+      output.textContent += "2. Anonymous Function:\n";
+      output.textContent += sayBye("Bob") + "\n\n";
+
+      output.textContent += "3. Arrow Function:\n";
+      output.textContent += "Square of 5 is " + square(5) + "\n\n";
+
+      output.textContent += "4. Callback Function:\n";
+      const add = (x, y) => x + y;
+      output.textContent += "Addition result: " + doMath(4, 6, add) + "\n\n";
+
+      output.textContent += "5. Higher-Order Function:\n";
+      const double = multiplier(2);
+      output.textContent += "Double of 8 is " + double(8) + "\n\n";
+
+      output.textContent += "6. IIFE:\n";
+      output.textContent += iifeResult + "\n";
+    </script>
+  </body>
+</html>

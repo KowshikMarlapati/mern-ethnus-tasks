@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript String Built-in Functions</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: #f0f0f0;
+        padding: 20px;
+      }
+      h2 {
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript String Built-in Functions</h2>
+    <pre id="output"></pre>
+
+    <script>
+      const output = document.getElementById("output");
+      const log = (label, result) =>
+        (output.textContent += `${label}:\n${result}\n\n`);
+
+      const str = "  Hello, JavaScript World!  ";
+
+      log("Original String", `"${str}"`);
+      log("Length", str.length);
+      log("charAt(7)", str.charAt(7));
+      log("indexOf('JavaScript')", str.indexOf("JavaScript"));
+      log("lastIndexOf('o')", str.lastIndexOf("o"));
+      log("includes('World')", str.includes("World"));
+      log("startsWith('  Hello')", str.startsWith("  Hello"));
+      log("endsWith('!  ')", str.endsWith("!  "));
+      log("toUpperCase()", str.toUpperCase());
+      log("toLowerCase()", str.toLowerCase());
+      log("trim()", `"${str.trim()}"`);
+      log("slice(2, 9)", str.slice(2, 9));
+      log("substring(2, 9)", str.substring(2, 9));
+      log("replace('JavaScript', 'JS')", str.replace("JavaScript", "JS"));
+      log("split(',')", JSON.stringify(str.split(",")));
+      log("concat(' Awesome!')", str.concat(" Awesome!"));
+      log("repeat(2)", str.trim().repeat(2));
+    </script>
+  </body>
+</html>
