@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Browser & DOM Objects Demo</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: #f4f4f4;
+        padding: 20px;
+      }
+      section {
+        margin-bottom: 30px;
+      }
+      pre {
+        background: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+        white-space: pre-wrap;
+      }
+      button {
+        margin: 5px;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>DOM & Browser Object Demo</h2>
+
+    <!-- Section 1: Accessing Input Field -->
+    <section>
+      <h3>1. Accessing Field Value</h3>
+      <input type="text" id="nameInput" placeholder="Enter your name" />
+      <button onclick="showName()">Show Name</button>
+      <p id="nameResult"></p>
+    </section>
+
+    <!-- Section 2: getElementById, getElementsByClassName, getElementsByTagName -->
+    <section>
+      <h3>2. DOM Access Methods</h3>
+      <div id="demoId">Element by ID</div>
+      <div class="demoClass">Element by Class</div>
+      <div class="demoClass">Another Class Element</div>
+      <p>Paragraph Tag 1</p>
+      <p>Paragraph Tag 2</p>
+      <button onclick="showDOMAccess()">Show DOM Access Results</button>
+      <pre id="domResults"></pre>
+    </section>
+
+    <!-- Section 3: innerHTML vs innerText -->
+    <section>
+      <h3>3. innerHTML vs innerText</h3>
+      <div id="htmlDemo">&lt;b&gt;Bold Text&lt;/b&gt;</div>
+      <button onclick="showInnerText()">Show Text</button>
+      <pre id="innerResult"></pre>
+    </section>
+
+    <!-- Section 4: History Object -->
+    <section>
+      <h3>4. History Object</h3>
+      <button onclick="goBack()">Back()</button>
+      <button onclick="goForward()">Forward()</button>
+      <pre id="historyInfo"></pre>
+    </section>
+
+    <!-- Section 5: Location Object -->
+    <section>
+      <h3>5. Location Object</h3>
+      <pre id="locationInfo"></pre>
+    </section>
+
+    <!-- Section 6: Navigator Object -->
+    <section>
+      <h3>6. Navigator Object</h3>
+      <pre id="navigatorInfo"></pre>
+    </section>
+
+    <!-- Section 7: Screen Object -->
+    <section>
+      <h3>7. Screen Object</h3>
+      <pre id="screenInfo"></pre>
+    </section>
+
+    <script>
+      function showName() {
+        const name = document.getElementById("nameInput").value;
+        document.getElementById("nameResult").innerText =
+          "Entered Name: " + name;
+      }
+
+      function showDOMAccess() {
+        const byId = document.getElementById("demoId").innerText;
+        const byClass = document.getElementsByClassName("demoClass");
+        const byTag = document.getElementsByTagName("p");
+
+        let result = "getElementById: " + byId + "\n";
+        result += "getElementsByClassName:\n";
+        for (let i = 0; i < byClass.length; i++) {
+          result += "- " + byClass[i].innerText + "\n";
+        }
+        result += "getElementsByTagName (P):\n";
+        for (let i = 0; i < byTag.length; i++) {
+          result += "- " + byTag[i].innerText + "\n";
+        }
+
+        document.getElementById("domResults").textContent = result;
+      }
+
+      function showInnerText() {
+        const element = document.getElementById("htmlDemo");
+        const innerHTML = element.innerHTML;
+        const innerText = element.innerText;
+
+        document.getElementById("innerResult").textContent =
+          "innerHTML: " + innerHTML + "\n" + "innerText: " + innerText;
+      }
+
+      function goBack() {
+        history.back();
+      }
+
+      function goForward() {
+        history.forward();
+      }
+
+      // Display location object info
+      const loc = window.location;
+      document.getElementById("locationInfo").textContent = `
+Href        : ${loc.href}
+Hostname    : ${loc.hostname}
+Pathname    : ${loc.pathname}
+Protocol    : ${loc.protocol}
+`;
+
+      // Display navigator object info
+      const nav = navigator;
+      document.getElementById("navigatorInfo").textContent = `
+UserAgent   : ${nav.userAgent}
+Language    : ${nav.language}
+Platform    : ${nav.platform}
+Online      : ${nav.onLine}
+`;
+
+      // Display screen object info
+      const screenInfo = window.screen;
+      document.getElementById("screenInfo").textContent = `
+Width       : ${screenInfo.width}
+Height      : ${screenInfo.height}
+Color Depth : ${screenInfo.colorDepth}
+`;
+
+      // Show current history length
+      document.getElementById(
+        "historyInfo"
+      ).textContent = `History Length: ${history.length}`;
+    </script>
+  </body>
+</html>
