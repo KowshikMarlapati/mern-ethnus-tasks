@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mobile Number Validation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 100px;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin-top: 10px;
+      }
+      #error {
+        color: red;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Mobile Number Validation using JavaScript</h2>
+    <label>Enter Mobile Number</label>
+    <input type="text" id="mobile" placeholder="Enter 10 Digit Mobile Num" />
+    <br />
+    <button onclick="validateMobile()">Validate</button>
+    <div id="error"></div>
+
+    <script>
+      function validateMobile() {
+        var mobile = document.getElementById("mobile").value;
+        var error = document.getElementById("error");
+
+        if (mobile.length < 10 || !/^\d{10}$/.test(mobile)) {
+          error.textContent =
+            "Error: Please enter a valid 10-digit mobile number.";
+        } else {
+          error.textContent = "Valid mobile number.";
+          error.style.color = "green";
+        }
+      }
+    </script>
+  </body>
+</html>
