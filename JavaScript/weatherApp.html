@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Weather App</title>
+    <style>
+      body {
+        background-color: #a8d5ba;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: left;
+        background: transparent;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .weather-info {
+        font-size: 24px;
+        margin-top: 20px;
+        color: white;
+      }
+
+      .city {
+        font-size: 28px;
+        font-weight: bold;
+        background-color: #235dbd;
+        color: white;
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .search {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search input {
+        padding: 8px;
+        font-size: 18px;
+        border: none;
+        border-bottom: 2px solid white;
+        background: transparent;
+        color: white;
+        outline: none;
+      }
+
+      .search button {
+        padding: 8px 16px;
+        font-size: 16px;
+        border: 2px solid black;
+        border-radius: 20px;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      .time {
+        font-size: 20px;
+        margin-top: 5px;
+      }
+
+      .desc {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Weather App</h1>
+      <div class="weather-info">
+        <div class="temp" id="temp">--</div>
+        <div class="city" id="city">--</div>
+        <div class="time" id="time">--</div>
+        <div class="desc" id="desc">--</div>
+      </div>
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="City name" />
+        <button onclick="getWeather()">Search Button</button>
+      </div>
+    </div>
+
+    <script>
+      const apiKey = "0e1d76d5a627d337548edf0ea4ead37f";
+
+      function getWeather() {
+        const city = document.getElementById("searchInput").value.trim();
+        if (!city) {
+          alert("Please enter a city");
+          return;
+        }
+
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+          city
+        )}&appid=${apiKey}&units=metric`;
+
+        console.log("Requesting URL:", url); // 🔧 Debug purpose
+
+        fetch(url)
+          .then((res) => {
+            console.log("Response status:", res.status); // 🔧 Debug purpose
+            if (res.status === 404) throw new Error("City not found");
+            if (!res.ok) throw new Error("Error: " + res.status);
+            return res.json();
+          })
+          .then((data) => {
+            // Populate UI
+            document.getElementById("temp").textContent = Math.round(
+              data.main.temp
+            );
+            document.getElementById("city").textContent = data.name;
+            document.getElementById("desc").textContent =
+              data.weather[0].description;
+            const now = new Date();
+            document.getElementById("time").textContent = `${now
+              .getHours()
+              .toString()
+              .padStart(2, "0")}:${now
+              .getMinutes()
+              .toString()
+              .padStart(2, "0")} ${now.toLocaleDateString("en-US", {
+              weekday: "long",
+            })}`;
+          })
+          .catch((error) => {
+            alert(error.message);
+            console.error(error);
+          });
+      }
+
+      window.onload = () => {
+        document.getElementById("searchInput").value = "Bhopal";
+        getWeather();
+      };
+    </script>
+  </body>
+</html>

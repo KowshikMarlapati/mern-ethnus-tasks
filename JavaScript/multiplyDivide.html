@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <script>
+        function multiplyNumbers() {
+            
+            const num1 = document.getElementById('firstnum').value;
+            const num2 =  document.getElementById('secondnum').value;
+            const mulitplication = num1*num2;
+            document.getElementById('result').innerHTML = `Multiplication = ${mulitplication}`;
+        }
+        
+        function divideNumbers() {
+            
+            const num1 = document.getElementById('firstnum').value;
+            const num2 =  document.getElementById('secondnum').value;
+            const division = num1/num2;
+            document.getElementById('result').innerHTML = `Division = ${division}`;
+        }
+
+    </script>
+    
+    <span>1st number:</span>
+    <input type="number" id="firstnum" placeholder="Enter a number"><br><br>
+    <span>2nd number:</span>
+    <input type="number" id="secondnum" placeholder="Enter a number"><br><br>
+    <button onclick="multiplyNumbers()">Multiply</button>
+    <button onclick="divideNumbers()">Divide</button>
+    <p id="result"></p>
+</body>
+</html>
