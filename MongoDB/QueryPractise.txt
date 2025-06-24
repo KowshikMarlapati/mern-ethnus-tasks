@@ -1,0 +1,88 @@
+// 1. Insert a single document into students
+db.students.insertOne({
+  name: "Alice",
+  age: 22,
+  course: "Computer Science"
+});
+
+// 2. Insert multiple documents into employees
+db.employees.insertMany([
+  { name: "John", salary: 40000, department: "HR" },
+  { name: "Sara", salary: 55000, department: "IT" },
+  { name: "Mike", salary: 30000, department: "Sales" }
+]);
+
+// 3. Find all documents from products
+db.products.find();
+
+// 4. Find all users where age > 25
+db.users.find({ age: { $gt: 25 } });
+
+// 5. Find orders where status is either "pending" or "shipped"
+db.orders.find({ status: { $in: ["pending", "shipped"] } });
+
+// 6. Update email of user where username is "john_doe"
+db.users.updateOne(
+  { username: "john_doe" },
+  { $set: { email: "john.doe@example.com" } }
+);
+
+// 7. Delete student where roll is 101
+db.students.deleteOne({ roll: 101 });
+
+// 8. Find employees with salary >= 30000
+db.employees.find({ salary: { $gte: 30000 } });
+
+// 9. Find books where author is "Chetan Bhagat" and publishedYear > 2010
+db.books.find({
+  author: "Chetan Bhagat",
+  publishedYear: { $gt: 2010 }
+});
+
+// 10. Count customers where city is "Delhi"
+db.customers.countDocuments({ city: "Delhi" });
+
+// 11. Find first 5 users
+db.users.find().limit(5);
+
+// 12. Skip first 10 logs and get next 5
+db.logs.find().skip(10).limit(5);
+
+// 13. Sort products by price ascending
+db.products.find().sort({ price: 1 });
+
+// 14. Sort users by createdAt descending
+db.users.find().sort({ createdAt: -1 });
+
+// 15. Retrieve only name and email fields of users (hide _id)
+db.users.find({}, { _id: 0, name: 1, email: 1 });
+
+// 16. Find students whose marks are between 60 and 90
+db.students.find({
+  marks: { $gte: 60, $lte: 90 }
+});
+
+// 17. Find sales where amount < 500 or amount > 5000
+db.sales.find({
+  $or: [
+    { amount: { $lt: 500 } },
+    { amount: { $gt: 5000 } }
+  ]
+});
+
+// 18. Update orders where deliveryDate is not null, set status to "completed"
+db.orders.updateMany(
+  { deliveryDate: { $ne: null } },
+  { $set: { status: "completed" } }
+);
+
+// 19. Delete all inactive users (active: false)
+db.users.deleteMany({ active: false });
+
+// 20. Find users either from "Bangalore" or with age > 30
+db.users.find({
+  $or: [
+    { city: "Bangalore" },
+    { age: { $gt: 30 } }
+  ]
+});
