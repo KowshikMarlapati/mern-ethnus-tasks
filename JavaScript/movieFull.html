@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlickFinder</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #111;
+        color: #fff;
+        overflow-x: hidden;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #000;
+        padding: 15px 30px;
+        border-bottom: 2px solid #1de9b6;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .logo span {
+        color: #1de9b6;
+      }
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        position: relative;
+      }
+      nav a:hover::after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #1de9b6;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+      }
+      .favorite-btn {
+        background-color: #1de9b6;
+        padding: 8px 16px;
+        border-radius: 25px;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+      }
+      .slider-container {
+        position: relative;
+        margin-top: 20px;
+        overflow: hidden;
+      }
+      .slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 300%;
+      }
+      .slide {
+        min-width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .slide h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 5px black;
+      }
+      .slide p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        text-shadow: 1px 1px 4px black;
+      }
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #1de9b6;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .left-arrow {
+        left: 20px;
+      }
+      .right-arrow {
+        right: 20px;
+      }
+
+      h1 {
+        margin-top: 40px;
+        color: #00e676;
+        font-size: 48px;
+        letter-spacing: 3px;
+        text-align: center;
+      }
+      .filter-buttons {
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .filter-buttons button {
+        background-color: #133b2f;
+        color: white;
+        border: 2px solid #00e676;
+        padding: 10px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .filter-buttons button.active {
+        background-color: #00e676;
+        color: black;
+      }
+      .search-bar {
+        margin: 20px auto;
+        max-width: 400px;
+        display: flex;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 20px;
+        align-items: center;
+      }
+      .search-bar input {
+        flex: 1;
+        background: none;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 16px;
+        padding: 5px;
+      }
+      .search-bar button {
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .movies {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+      }
+      .movie-card {
+        background-color: #2a2a2a;
+        border-radius: 12px;
+        overflow: hidden;
+        width: 180px;
+        transition: transform 0.3s;
+      }
+      .movie-card:hover {
+        transform: scale(1.05);
+      }
+      .movie-card img {
+        width: 100%;
+        height: 270px;
+        object-fit: cover;
+      }
+      .movie-info {
+        padding: 10px;
+        text-align: left;
+      }
+      .movie-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #00e676;
+      }
+      .movie-type {
+        font-size: 12px;
+        margin-top: 5px;
+      }
+      .pagination {
+        text-align: center;
+        margin: 20px;
+      }
+      .pagination button {
+        background-color: #1de9b6;
+        border: none;
+        margin: 5px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .faq-section {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+      .faq-item {
+        background-color: #1b1b1b;
+        margin: 10px 0;
+        border: 1px solid #00e676;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .faq-question {
+        padding: 15px 20px;
+        font-size: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .faq-answer {
+        padding: 0 20px 15px 20px;
+        display: none;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+      .faq-toggle {
+        font-size: 24px;
+        font-weight: bold;
+        color: #00e676;
+      }
+
+      footer {
+        background-color: #1c1c1c;
+        color: #ccc;
+        padding: 40px 20px 20px;
+        margin-top: 40px;
+        font-size: 14px;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+
+      .footer-col {
+        flex: 1 1 200px;
+        margin: 10px;
+      }
+
+      .footer-col h3 {
+        color: #00e676;
+        margin-bottom: 15px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul li a {
+        color: #ccc;
+        text-decoration: none;
+      }
+
+      .footer-col ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-col input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        border: none;
+      }
+
+      .footer-col label {
+        font-size: 13px;
+        color: #bbb;
+      }
+
+      .footer-col label a {
+        color: #00e676;
+        text-decoration: none;
+      }
+
+      .send-btn {
+        background-color: #00e676;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        color: black;
+      }
+
+      .footer-social {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .footer-social i {
+        margin: 0 10px;
+        font-size: 18px;
+        cursor: pointer;
+        color: #00e676;
+      }
+
+      footer p {
+        text-align: center;
+        font-size: 13px;
+      }
+
+      footer p a {
+        color: #00e676;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Flick<span>Finder</span></div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Tv Show</a>
+        <a href="#">Movie</a>
+        <a href="#">Upcoming</a>
+      </nav>
+      <button class="favorite-btn">Favorite ♡</button>
+    </header>
+
+    <div class="slider-container">
+      <button class="arrow left-arrow" onclick="scrollSlider(-1)">❮</button>
+      <div class="slider" id="slider">
+        <div
+          class="slide"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1542206395-9feb3edaa68e');
+          "
+        >
+          <h1>Explore Upcoming Hits</h1>
+          <p>
+            Stay ahead with insights into the latest releases and trending
+            series.
+          </p>
+        </div>
+        <div
+          class="slide"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1601575839873-9b2cf95fbd08');
+          "
+        >
+          <h1>Your Movie Buddy</h1>
+          <p>
+            Hand-picked recommendations, from indie gems to blockbuster
+            spectacles.
+          </p>
+        </div>
+      </div>
+      <button class="arrow right-arrow" onclick="scrollSlider(1)">❯</button>
+    </div>
+
+    <div id="movieList">
+      <h1>MOVIE LIST</h1>
+      <div class="filter-buttons">
+        <button onclick="filterMovies('marvel', this)" class="active">
+          Marvel Movie
+        </button>
+        <button onclick="filterMovies('comedy', this)">Funny Movie</button>
+        <button onclick="filterMovies('animation', this)">
+          Animated Movie
+        </button>
+        <button onclick="filterMovies('series', this)">Web Series</button>
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search here..."
+          onkeydown="handleKey(event)"
+        />
+        <button class="search-button" onclick="searchMovies()">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      <div class="movies" id="moviesContainer"></div>
+      <div class="pagination">
+        <button onclick="fetchMovies(currentQuery, 1)">Page 1</button>
+        <button onclick="fetchMovies(currentQuery, 2)">Page 2</button>
+        <button onclick="fetchMovies(currentQuery, currentPage + 1)">
+          Show More
+        </button>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h1>Frequently Asked Questions</h1>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          What is FlickFinder?<span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          FlickFinder is your go-to platform for discovering movies, TV shows,
+          and upcoming releases!
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How do I search for movies?<span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Use the search bar on the Movie List section to find movies by title,
+          genre, or keyword.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Can I add movies to favorites?<span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! Click the "Favorite ♡" button to save your favorite picks for
+          quick access.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Is FlickFinder free to use?<span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely! FlickFinder is a free platform for movie enthusiasts.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Where do the movie details come from?<span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          We use the OMDB API to fetch up-to-date movie information and posters.
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-row">
+          <div class="footer-col">
+            <h3>FlickFinder</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Products</h3>
+            <ul>
+              <li><a href="#">TV Show</a></li>
+              <li><a href="#">Web Series</a></li>
+              <li><a href="#">Hollywood</a></li>
+              <li><a href="#">Bollywood</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Search Movie</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Newsletter</h3>
+            <input type="email" placeholder="mail@pagedone.com" />
+            <div>
+              <input type="checkbox" id="policy" />
+              <label for="policy">
+                I agree with <a href="#">Privacy Policy</a> and
+                <a href="#">Terms of Condition</a></label
+              >
+            </div>
+            <button class="send-btn">Send</button>
+          </div>
+        </div>
+        <div class="footer-social">
+          <i class="fa fa-facebook"></i>
+          <i class="fa fa-instagram"></i>
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-youtube-play"></i>
+        </div>
+        <p>
+          ©FlickFinder 2025. All rights reserved. Developed by
+          <a href="#">MKK</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const slider = document.getElementById("slider");
+      const slides = document.querySelectorAll(".slide");
+      let index = 0;
+      const total = slides.length;
+
+      function scrollSlider(direction) {
+        index += direction;
+        if (index < 0) index = total - 1;
+        else if (index >= total) index = 0;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      const apiKey = "84b9986f";
+      const moviesContainer = document.getElementById("moviesContainer");
+      const buttons = document.querySelectorAll(".filter-buttons button");
+      let currentQuery = "marvel";
+      let currentPage = 1;
+
+      async function fetchMovies(query, page = 1) {
+        currentQuery = query;
+        currentPage = page;
+        moviesContainer.innerHTML = "Loading...";
+        try {
+          const response = await fetch(
+            `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(
+              query
+            )}&page=${page}`
+          );
+          const data = await response.json();
+          if (data.Response === "True") {
+            displayMovies(data.Search);
+          } else {
+            moviesContainer.innerHTML = `<p>No results found for "${query}"</p>`;
+          }
+        } catch (err) {
+          console.error(err);
+          moviesContainer.innerHTML = `<p>Error loading movies.</p>`;
+        }
+      }
+
+      function displayMovies(movies) {
+        moviesContainer.innerHTML = "";
+        movies.forEach((movie) => {
+          const card = document.createElement("div");
+          card.className = "movie-card";
+          card.innerHTML = `
+            <img src="${
+              movie.Poster !== "N/A"
+                ? movie.Poster
+                : "https://via.placeholder.com/180x270?text=No+Image"
+            }" alt="${movie.Title}">
+            <div class="movie-info">
+              <div class="movie-title">${movie.Title}</div>
+              <div class="movie-type">Type: ${movie.Type}</div>
+              <div class="movie-year">Year: ${movie.Year}</div>
+            </div>`;
+          moviesContainer.appendChild(card);
+        });
+      }
+
+      function filterMovies(query, btn) {
+        buttons.forEach((button) => button.classList.remove("active"));
+        btn.classList.add("active");
+        fetchMovies(query, 1);
+      }
+
+      function searchMovies() {
+        const input = document.getElementById("searchInput").value.trim();
+        if (input !== "") {
+          buttons.forEach((button) => button.classList.remove("active"));
+          fetchMovies(input, 1);
+        }
+      }
+
+      function handleKey(event) {
+        if (event.key === "Enter") searchMovies();
+      }
+
+      function toggleFAQ(elem) {
+        const answer = elem.nextElementSibling;
+        const toggle = elem.querySelector(".faq-toggle");
+        if (answer.style.display === "block") {
+          answer.style.display = "none";
+          toggle.textContent = "+";
+        } else {
+          answer.style.display = "block";
+          toggle.textContent = "×";
+        }
+      }
+
+      fetchMovies("marvel");
+    </script>
+  </body>
+</html>
